@@ -33,6 +33,7 @@ class MusicSpider(scrapy.Spider):
             for initial in self.initials:
                 url = '{url}/discover/artist/cat?id={id}&initial={initial}'.format(url=self.base_url, id=id,
                                                                                    initial=initial)
+                # url = 'http://www.baidu.com'
                 yield Request(url, callback=self.parse_index)
 
     def parse_index(self, response):
@@ -95,12 +96,22 @@ class MusicSpider(scrapy.Spider):
                 }
                 comments.append(data)
 
+        from ..items import MusicItem
         item = MusicItem()
         # 由于eval方法不稳定，具体的可以自己搜索，我们过滤一下错误
-        for field in item.fields:
-            try:
-                item[field] = eval(field)
-            except:
-                print('Field is not defined', field)
-        print item
+
+        item['musicId'] = id
+        item['musicName'] = music[0]
+        item['artist'] = artist[0]
+        item['album'] = album[0]
+        item['comments'] = comments
+
+        # for field in item.fields:
+        #     try:
+        #         if field == 'id':
+        #             item[field] = eval(field)[0]
+        #         item[field] = eval(field)[0]
+        #     except:
+        #         print('Field is not defined', field)
+
         yield item

@@ -25,7 +25,6 @@ MONGO_DB = 'music163'
 # USER_AGENT = 'music163 (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
 DOWNLOADER_MIDDLEWARES = {'music163.middlewares.Music163DownloaderMiddleware': 400}
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # CONCURRENT_REQUESTS = 32
@@ -39,28 +38,29 @@ DOWNLOADER_MIDDLEWARES = {'music163.middlewares.Music163DownloaderMiddleware': 4
 # CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
-# COOKIES_ENABLED = False
+COOKIES_ENABLED = False
 
 # Disable Telnet Console (enabled by default)
 # TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-# DEFAULT_REQUEST_HEADERS = {
-#   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-#   'Accept-Language': 'en',
-# }
+DEFAULT_REQUEST_HEADERS = {
+    'Referer': 'http://www.google.com',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    'Accept-Language': 'en',
+}
 
 DEFAULT_REQUEST_HEADERS = {
     'Accept': "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
     'Accept-Language': "zh-CN,zh;q=0.8",
     "Accept-Encoding": "gzip, deflate",
     "Connection": "keep-alive",
-    "Host": "baidu.cn",
-    "Referer": "http://ris.szpl.gov.cn/bol/projectdetail.aspx",
+    # "Host": "http://baidu.com",
     "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36",
-    "Origin": "http://baidu.com",
+    # "Origin": "http://baidu.com",
     'Upgrade-Insecure-Requests': '1',
-    'Content-Type': 'application/x-www-form-urlencoded'}
+    # 'Content-Type': 'application/x-www-form-urlencoded'
+}
 
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html

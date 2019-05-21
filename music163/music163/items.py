@@ -12,8 +12,8 @@ class MusicItem(scrapy.Item):
     # define the fields for your item here like:
     # 我们保存歌曲的id
     table_name = 'music'
-    id = scrapy.Field()
+    musicId = scrapy.Field()
     artist = scrapy.Field()
     album = scrapy.Field()
-    music = scrapy.Field()
+    musicName = scrapy.Field()
     comments = scrapy.Field()
